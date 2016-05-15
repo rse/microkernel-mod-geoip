@@ -31,7 +31,10 @@ $ npm install microkernel-mod-geoip
 var Microkernel = require("microkernel")
 var kernel = new Microkernel()
 
-kernel.load([ "microkernel-mod-geoip", { mmdbfile: "GeoLite2-Country.mmdb" } ])
+kernel.load(
+    "microkernel-mod-hapi",
+    [ "microkernel-mod-geoip", { mmdbfile: "GeoLite2-Country.mmdb" } ]
+)
 
 kernel.add(class ExampleModule {
     get module () {
