@@ -1,6 +1,6 @@
 {
     "name":        "microkernel-mod-geoip",
-    "version":     "0.9.0",
+    "version":     "0.9.1",
     "description": "Microkernel module for resolving geo-location of IP addresses",
     "keywords": [
         "microkernel", "module", "geoip"
