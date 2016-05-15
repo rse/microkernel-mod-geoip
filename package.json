@@ -1,0 +1,32 @@
+{
+    "name":        "microkernel-mod-geoip",
+    "version":     "0.9.0",
+    "description": "Microkernel module for resolving geo-location of IP addresses",
+    "keywords": [
+        "microkernel", "module", "geoip"
+    ],
+    "repository": {
+        "type": "git",
+        "url":  "https://github.com/rse/microkernel-mod-geoip.git"
+    },
+    "author": {
+        "name":  "Ralf S. Engelschall",
+        "email": "rse@engelschall.com",
+        "url":   "http://engelschall.com"
+    },
+    "license":  "MIT",
+    "homepage": "https://github.com/rse/microkernel-mod-geoip",
+    "bugs":     "https://github.com/rse/microkernel-mod-geoip/issues",
+    "dependencies": {
+        "node-schedule":        "~1.1.0",
+        "maxmind-db-reader":    "~0.2.1"
+    },
+    "peerDependencies": {
+        "microkernel":          "*",
+        "microkernel-options":  "*"
+    },
+    "scripts": {
+        "prepublish": "jshint microkernel-mod-geoip.js && babel --presets es2015 microkernel-mod-geoip.js >microkernel-mod-geoip.js5"
+    },
+    "main": "microkernel-mod-geoip.js5"
+}
