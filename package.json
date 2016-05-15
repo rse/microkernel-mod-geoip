@@ -18,12 +18,12 @@
     "homepage": "https://github.com/rse/microkernel-mod-geoip",
     "bugs":     "https://github.com/rse/microkernel-mod-geoip/issues",
     "dependencies": {
-        "node-schedule":        "~1.1.0",
-        "maxmind-db-reader":    "~0.2.1"
+        "node-schedule":            "~1.1.0",
+        "maxmind-db-reader":        "~0.2.1"
     },
     "peerDependencies": {
-        "microkernel":          "*",
-        "microkernel-options":  "*"
+        "microkernel":              "*",
+        "microkernel-mod-options":  "*"
     },
     "scripts": {
         "prepublish": "jshint microkernel-mod-geoip.js && babel --presets es2015 microkernel-mod-geoip.js >microkernel-mod-geoip.js5"
