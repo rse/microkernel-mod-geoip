@@ -37,7 +37,7 @@ kernel.add(class ExampleModule {
     get module () {
         return {
             name:  "example",
-            after: [ "HAPI", GEOIP" ]
+            after: [ "HAPI", "GEOIP" ]
         }
     }
     latch (kernel) {
