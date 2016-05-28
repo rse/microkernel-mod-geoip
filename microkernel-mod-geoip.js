@@ -50,32 +50,36 @@ export default class Module {
     start (kernel) {
         /*  act only in case a database was configured  */
         let mmdbfile = kernel.rs("options:options").mmdbfile
-        if (mmdbfile === "")
-            return
 
         /*  define the updater job  */
         let updater = () => {
-            /*  read MaxMind GeoLite2 database  */
-            return new Promise((resolve, reject) => {
-                mmdbreader.open(mmdbfile, (err, reader) => {
-                    if (err)
-                        reject(err)
-                    else {
-                        this.countries = reader
-                        resolve()
-                    }
+            if (mmdbfile !== "") {
+                /*  read MaxMind GeoLite2 database  */
+                return new Promise((resolve, reject) => {
+                    mmdbreader.open(mmdbfile, (err, reader) => {
+                        if (err)
+                            reject(err)
+                        else {
+                            this.countries = reader
+                            resolve()
+                        }
+                    })
                 })
-            })
+            }
+            else
+                return Promise.resolve()
         }
 
         /*  schedule the updater job to run every hour  */
-        kernel.sv("log", "geoip", "info", "starting GeoIP update scheduler")
-        this.job = new schedule.Job("GeoIP Database Updater", updater)
-        let rule = new schedule.RecurrenceRule()
-        rule.hour   = null
-        rule.minute = 8
-        rule.second = 42
-        this.job.schedule(rule)
+        if (mmdbfile !== "") {
+            kernel.sv("log", "geoip", "info", "starting GeoIP update scheduler")
+            this.job = new schedule.Job("GeoIP Database Updater", updater)
+            let rule = new schedule.RecurrenceRule()
+            rule.hour   = null
+            rule.minute = 8
+            rule.second = 42
+            this.job.schedule(rule)
+        }
 
         /*  enrich request information with MaxMind GeoLite2 based country id  */
         kernel.register("geoip", (ip) => {
