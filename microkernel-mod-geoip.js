@@ -48,11 +48,16 @@ export default class Module {
         })
     }
     start (kernel) {
+        /*  act only in case a database was configured  */
+        let mmdbfile = kernel.rs("options:options").mmdbfile
+        if (mmdbfile === "")
+            return
+
         /*  define the updater job  */
         let updater = () => {
             /*  read MaxMind GeoLite2 database  */
             return new Promise((resolve, reject) => {
-                mmdbreader.open(kernel.rs("options:options").mmdbfile, (err, reader) => {
+                mmdbreader.open(mmdbfile, (err, reader) => {
                     if (err)
                         reject(err)
                     else {
