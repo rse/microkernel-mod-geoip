@@ -22,6 +22,7 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import Promise    from "bluebird"
 import schedule   from "node-schedule"
 import mmdbreader from "maxmind-db-reader"
 
