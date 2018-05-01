@@ -23,8 +23,8 @@
 */
 
 /*  external requirements  */
-import schedule   from "node-schedule"
-import mmdbreader from "maxmind-db-reader"
+const schedule   = require("node-schedule")
+const mmdbreader = require("maxmind-db-reader")
 
 /*  the Microkernel module  */
 class Module {
