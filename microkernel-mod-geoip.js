@@ -87,7 +87,7 @@ class Module {
         kernel.register("geoip", (ip) => {
             return new Promise((resolve, reject) => {
                 if (this.countries === null)
-                    reject("GeoIP database still not available")
+                    reject(new Error("GeoIP database still not available"))
                 else
                     this.countries.getGeoData(ip, (err, geodata) => {
                         if (err)
