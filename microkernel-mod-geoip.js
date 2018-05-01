@@ -1,6 +1,6 @@
 /*
 **  Microkernel -- Microkernel for Server Applications
-**  Copyright (c) 2015-2016 Ralf S. Engelschall <rse@engelschall.com>
+**  Copyright (c) 2016-2018 Ralf S. Engelschall <rse@engelschall.com>
 **
 **  Permission is hereby granted, free of charge, to any person obtaining
 **  a copy of this software and associated documentation files (the
@@ -22,11 +22,12 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import Promise    from "bluebird"
+/*  external requirements  */
 import schedule   from "node-schedule"
 import mmdbreader from "maxmind-db-reader"
 
-export default class Module {
+/*  the Microkernel module  */
+class Module {
     constructor (options) {
         this.options = Object.assign({
             mmdbfile: ""
@@ -111,4 +112,7 @@ export default class Module {
         }
     }
 }
+
+/*  export the Microkernel module  */
+module.exports = Module
 
