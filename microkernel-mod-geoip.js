@@ -51,10 +51,10 @@ class Module {
     }
     start (kernel) {
         /*  act only in case a database was configured  */
-        let mmdbfile = kernel.rs("options:options").mmdbfile
+        const mmdbfile = kernel.rs("options:options").mmdbfile
 
         /*  define the updater job  */
-        let updater = () => {
+        const updater = () => {
             if (mmdbfile !== "") {
                 /*  read MaxMind GeoLite2 database  */
                 return new Promise((resolve, reject) => {
@@ -76,7 +76,7 @@ class Module {
         if (mmdbfile !== "") {
             kernel.sv("log", "geoip", "info", "starting GeoIP update scheduler")
             this.job = new schedule.Job("GeoIP Database Updater", updater)
-            let rule = new schedule.RecurrenceRule()
+            const rule = new schedule.RecurrenceRule()
             rule.hour   = null
             rule.minute = 8
             rule.second = 42
